@@ -10,10 +10,36 @@
     <a href="">view meetings</a>
     <p>login not available lol</p>
 
+    <select id = "cType" name = "type">
+        <option value = "A">A</option>
+        <option value = "B">B</option>
+        <option value = "C">C</option>
+        <option value = "D">D</option>
+    </select>
+    <input id = "cDescription" type="text">
+    <button id="makeComplaint">Report a Complaint</button>
+
 
 </body>
 
 <script>
+    const baseUrl = "http://localhost:8080";
+    const reportC = document.getElementById("makeComplaint");
+    const typeInput = document.getElementById("cType");
+    const descInput = document.getElementById("cDescription");
+
+    reportC.addEventListener("click", async function(event){
+        const cType = typeInput.value;
+        const description = descInput.value;
+        let body = {cType: cType, description: description};
+
+        const response = await fetch(baseUrl + "/complaints", {
+            method: 'POST',
+            body: JSON.stringify(body)
+        });
+        body = await response.json();
+        console.log(body);
+    })
 
 </script>
 </html>
