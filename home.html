@@ -1,30 +1,56 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-
-    <title>Some Council</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="council-style.css">
+    <title>Ilus Vale Council</title>
 </head>
 <body>
-    <h1>super cool stuff</h1>
-    <a href="">file complaint</a>
-    <a href="">view meetings</a>
-    <p>login not available lol</p>
+    <header>
+        <div id = "logo">
+            <h1 class="dancing">Ilus Vale</h1>
+            <h2>City Council</h2>
+        </div>
+        <div id = "nav">
+            <p>About</p>
+            <p>Report Complaint</p>
+            <p>Contact</p>
+        </div>
+        <div id = "login">
+            <p>Login</p>
+            <p>Sign up</p>
+        </div>
+        
+    </header>
+    
+    <div id = "content">
+        <a href="">file complaint</a>
+        <a href="">view meetings</a>
+        <p>login not available lol</p>
 
-    <select id = "cType" name = "type">
-        <option value = "A">A</option>
-        <option value = "B">B</option>
-        <option value = "C">C</option>
-        <option value = "D">D</option>
-    </select>
-    <input id = "cDescription" type="text">
-    <button id="makeComplaint">Report a Complaint</button>
+        <select id = "cType" name = "type">
+            <option value = "A">A</option>
+            <option value = "B">B</option>
+            <option value = "C">C</option>
+            <option value = "D">D</option>
+        </select>
+        <input id = "cDescription" type="text">
+        <button id="makeComplaint">Report a Complaint</button>
 
-    <button id="showComplaints">Review Complaints</button>
-    <table id="cList">
+        <button id="showComplaints">Review Complaints</button>
+        <table id="cList">
 
-    </table>
+        </table>
+    </div>
+    
+    
 
 
+    <footer>
+
+    </footer>
 </body>
 
 <script>

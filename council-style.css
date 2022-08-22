@@ -1,0 +1,30 @@
+:root {
+    /* use with : var(--blue) */
+    --theme-yellow : rgb(240,193,102);
+    --theme-offwhite : rgb(240,227,222);
+    --theme-lightblue : rgb(181,249,255);
+    --theme-blue : rgb(73,194,206);
+    --theme-darkblue : rgb(93,144,166);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    /*
+    background-size: cover;
+    background-image: url("city-art.jpg");
+    */
+}
+
+.dancing{
+    font-family: 'Dancing Script', cursive;
+    font-size: 14ch;
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+}
