@@ -19,14 +19,21 @@
     <input id = "cDescription" type="text">
     <button id="makeComplaint">Report a Complaint</button>
 
+    <button id="showComplaints">Review Complaints</button>
+    <table id="cList">
+
+    </table>
+
 
 </body>
 
 <script>
     const baseUrl = "http://localhost:8080";
     const reportC = document.getElementById("makeComplaint");
+    const reviewC = document.getElementById("showComplaints")
     const typeInput = document.getElementById("cType");
     const descInput = document.getElementById("cDescription");
+    const complaintList = document.getElementById("cList");
 
     reportC.addEventListener("click", async function(event){
         const cType = typeInput.value;
@@ -39,6 +46,71 @@
         });
         body = await response.json();
         console.log(body);
+    });
+
+    function makeTable(body){
+        const tr = document.createElement("tr");
+        const th1 = document.createElement("th");
+        const th2 = document.createElement("th");
+        const th3 = document.createElement("th");
+        const th4 = document.createElement("th");
+        const th5 = document.createElement("th");
+        const th6 = document.createElement("th");
+        
+        th1.innerText = "id";
+        th2.innerText = "Complaint Type";
+        th3.innerText = "Description";
+        th4.innerText = "Priority";
+        th5.innerText = "Date";
+        th6.innerText = "Assigned Meeting";
+        
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+        tr.appendChild(th3);
+        tr.appendChild(th4);
+        tr.appendChild(th5);
+        tr.appendChild(th6);
+
+        complaintList.appendChild(tr);
+
+        for(let c of body){
+            const tr = document.createElement("tr");
+            const td1 = document.createElement("td");
+            const td2 = document.createElement("td");
+            const td3 = document.createElement("td");
+            const td4 = document.createElement("td");
+            const td5 = document.createElement("td");
+            const td6 = document.createElement("td");
+
+            td1.innerText = c.id;
+            td2.innerText = c.cType;
+            td3.innerText = c.description;
+            td4.innerText = c.cPriority;
+            td5.innerText = c.date;
+            td6.innerText = c.meetingId;
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            tr.appendChild(td6);
+
+            complaintList.appendChild(tr);
+        }
+    }
+
+    reviewC.addEventListener("click", async function(event){
+        const response = await fetch(baseUrl + "/complaints", {
+            method: 'GET'
+        })
+        const body = await response.json();
+
+        console.log(body);
+        
+        makeTable(body);
+        
+
     })
 
 </script>
