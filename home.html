@@ -16,7 +16,7 @@
         <div id = "nav">
             <p>About</p>
             <p>Report Complaint</p>
-            <p>Contact</p>
+            <p>Contact Us</p>
         </div>
         <div id = "login">
             <p>Login</p>
@@ -25,118 +25,230 @@
         
     </header>
     
-    <div id = "content">
-        <a href="">file complaint</a>
-        <a href="">view meetings</a>
-        <p>login not available lol</p>
+    <div class = "content">
 
-        <select id = "cType" name = "type">
-            <option value = "A">A</option>
-            <option value = "B">B</option>
-            <option value = "C">C</option>
-            <option value = "D">D</option>
-        </select>
-        <input id = "cDescription" type="text">
-        <button id="makeComplaint">Report a Complaint</button>
+        <div class = "floating">
+            <h3>Life Redefined</h3>
+            <h4>Live Better in <i>Paradise</i></h4>
+        </div>
+        
+        <div class = "infoBlock">
+            <h3>Life Redefined</h3>
+            <h4>Get all your needs catered to with our all inclusive <i>LIFE</i> package</h4>
+            <div class = "infoBlock_items">
+                <p>Best chefs in the world</p>
+                <p>Housing</p>
+                <p>Transportation</p>
+                <p>Activities</p>
+                <p>Custom Requests</p>
+            </div>
+        </div>
 
-        <button id="showComplaints">Review Complaints</button>
-        <table id="cList">
+        
+        <div class = "infoBlock">
+            <h3>How we do it</h3>
+            <div class = "infoBlock_items">
+                <p>The entire city is run by robot working underneath the city to see to your need and desire. 
+                    Your request is their sole mission. With our revolutionary AI and automated
+                    robot production and education system, no request is too big or or too difficult for them to fulfill
+                </p>
+            </div>
+            
+        </div>
 
-        </table>
+        <div class = "infoBlock">
+            <h3>Council Information</h3>
+            <p><i>Login or Sign up for more options</i></p>
+            <div class = "infoBlock_items">
+                <button id = "makeComplaint">Report Complaint</button>
+                <button id = "requestAccount">Request Account</button>
+                <button id = "showMeetings">View Council Meetings</button>
+                <button id = "makeMeetings">Create Meetings</button>
+                <button id="showComplaints">Review Complaints</button>
+                
+            </div>
+            <div id = "councilActionsArea">
+
+            </div>
+        </div>
     </div>
-    
-    
-
 
     <footer>
-
+        <p>s</p>
+        <p>t</p>
+        <p>u</p>
+        <p>f</p>
+        <p>f</p>
     </footer>
+
+
+    <div class = "popUp" id = "complaintForm">
+        <form>
+            <h1>Submit Complaint</h1>
+            <label for="desc">Complaint Description</label>
+            <textarea placeholder="Description" name="desc" required maxlength="200"></textarea>
+
+            <button id = "submitComplaint" type="button">Submit</button>
+            <button id = "closeComplaintForm" type="button">Close</button>
+        </form>
+    </div>
+
+    <div class = "popUp" id = "requestForm">
+        <form>
+            <h1>Submit Request</h1>
+            <input type="text">
+            <label for="usr">Request</label>
+            <select name="usr" id="usrSelect">
+                <option>thing1</option>
+                <option>thing2</option>
+                <option>thing3</option>
+            </select>
+
+            <button id = "submitRequest" type="button">Submit</button>
+            <button id = "closeRequestForm" type="button">Close</button>
+        </form>
+    </div>
+
+    <div class = "popUp" id = "meetingForm">
+        <form>
+            <h1>Create New Meeting</h1>
+            <label for="date">Pick Date</label>
+            <input type="datetime-local" id="meetDateInput" name="date">
+
+            <label for="addy">Address</label>
+            <input type="text" placeholder="123 paradise blvd" id="addressInput" name="addy">
+
+            <button id = "submitMeeting" type="button">Add Meeting</button>
+            <button id = "closeMeetingForm" type="button">Close</button>
+        </form>
+    </div>
+
 </body>
 
 <script>
     const baseUrl = "http://localhost:8080";
-    const reportC = document.getElementById("makeComplaint");
-    const reviewC = document.getElementById("showComplaints")
-    const typeInput = document.getElementById("cType");
-    const descInput = document.getElementById("cDescription");
-    const complaintList = document.getElementById("cList");
 
-    reportC.addEventListener("click", async function(event){
-        const cType = typeInput.value;
+    const reportC = document.getElementById("makeComplaint");
+    const cFormSubmit = document.getElementById("submitComplaint");
+    const cFormClose = document.getElementById("closeComplaintForm");
+
+    const reportR = document.getElementById("requestAccount");
+    const rFormSubmit = document.getElementById("submitRequest");
+    const rFormClose = document.getElementById("closeRequestForm");
+    
+    const reviewC = document.getElementById("showComplaints");
+    const viewMeetings = document.getElementById("showMeetings");
+    const descInput = document.getElementById("cDescription");
+
+    const makeMeeting = document.getElementById("makeMeetings");
+    const mFormSubmit = document.getElementById("submitMeeting");
+    const mFormClose = document.getElementById("closeMeetingForm");
+
+    const actionsArea = document.getElementById("councilActionsArea")
+
+
+    // Report Complaint Pop-up
+    reportC.addEventListener("click", function(event){
+        document.getElementById("complaintForm").style.display = "flex";
+    });
+    cFormSubmit.addEventListener("click", async function(event){
         const description = descInput.value;
-        let body = {cType: cType, description: description};
+        let body = {cType: "Complaint", description: description};
 
         const response = await fetch(baseUrl + "/complaints", {
             method: 'POST',
             body: JSON.stringify(body)
         });
         body = await response.json();
-        console.log(body);
+    });
+    cFormClose.addEventListener("click", function(event){
+        document.getElementById("complaintForm").style.display = "none";
     });
 
-    function makeTable(body){
-        const tr = document.createElement("tr");
-        const th1 = document.createElement("th");
-        const th2 = document.createElement("th");
-        const th3 = document.createElement("th");
-        const th4 = document.createElement("th");
-        const th5 = document.createElement("th");
-        const th6 = document.createElement("th");
-        
-        th1.innerText = "id";
-        th2.innerText = "Complaint Type";
-        th3.innerText = "Description";
-        th4.innerText = "Priority";
-        th5.innerText = "Date";
-        th6.innerText = "Assigned Meeting";
-        
-        tr.appendChild(th1);
-        tr.appendChild(th2);
-        tr.appendChild(th3);
-        tr.appendChild(th4);
-        tr.appendChild(th5);
-        tr.appendChild(th6);
+    // Make Request Pop-up
+    reportR.addEventListener("click", function(event){
+        document.getElementById("requestForm").style.display = "flex";
+    });
+    rFormSubmit.addEventListener("click", async function(event){
+        document.getElementById("requestForm").style.display = "none";
+    });
+    rFormClose.addEventListener("click", function(event){
+        document.getElementById("requestForm").style.display = "none";
+    });
+    // Create Meeting
+    makeMeeting.addEventListener("click", function(event){
+        document.getElementById("meetingForm").style.display = "flex";
+    });
+    mFormSubmit.addEventListener("click", async function(event){
+        const date = document.getElementById("meetDateInput").value;
+        const address = document.getElementById("addressInput").value;
+        let epoch = new Date(date);
+        epoch = epoch.getTime() / 1000;
+        let body = {date: epoch, address: address};
 
-        complaintList.appendChild(tr);
+        const response = await fetch(baseUrl + "/meetings", {
+            method: 'POST',
+            body: JSON.stringify(body)
+        });
+        body = await response.json();
+    });
+    mFormClose.addEventListener("click", function(event){
+        document.getElementById("meetingForm").style.display = "none";
+    });
+
+    // Complaint and meetings tables
+    function fillTable(table, body){
+        const tr = document.createElement("tr");
+        for(let k of Object.keys(body[0])){
+            const th1 = document.createElement("th");
+            if(k.charAt(0) == 'c'){ k.replace(/c/, ''); }
+            th1.innerText = k.toUpperCase();
+            tr.appendChild(th1);
+        }
+        table.appendChild(tr);
 
         for(let c of body){
             const tr = document.createElement("tr");
-            const td1 = document.createElement("td");
-            const td2 = document.createElement("td");
-            const td3 = document.createElement("td");
-            const td4 = document.createElement("td");
-            const td5 = document.createElement("td");
-            const td6 = document.createElement("td");
-
-            td1.innerText = c.id;
-            td2.innerText = c.cType;
-            td3.innerText = c.description;
-            td4.innerText = c.cPriority;
-            td5.innerText = c.date;
-            td6.innerText = c.meetingId;
-
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            tr.appendChild(td4);
-            tr.appendChild(td5);
-            tr.appendChild(td6);
-
-            complaintList.appendChild(tr);
+            for(let k of Object.keys(c) ){
+                const td1 = document.createElement("td");
+                if(k == "date"){
+                    const date = new Date(c[k]*1000);
+                    td1.innerText = date.toISOString().replace(/T/, " ").replace(/.000Z/, "");;
+                }
+                else{ td1.innerText = c[k]; }
+                
+                tr.appendChild(td1);
+            }
+            table.appendChild(tr);
         }
     }
-
     reviewC.addEventListener("click", async function(event){
+        if(actionsArea.firstChild){
+            actionsArea.removeChild(actionsArea.firstChild);
+        }
+        
         const response = await fetch(baseUrl + "/complaints", {
             method: 'GET'
         })
         const body = await response.json();
 
-        console.log(body);
-        
-        makeTable(body);
-        
+        const table = document.createElement("table");
+        fillTable(table, body);
 
+        actionsArea.appendChild(table);
+    })
+    viewMeetings.addEventListener("click", async function(event){
+        if(actionsArea.firstChild){
+            actionsArea.removeChild(actionsArea.firstChild);
+        }
+        const response = await fetch(baseUrl + "/meetings", {
+            method: 'GET'
+        })
+        const body = await response.json();
+
+        const table = document.createElement("table");
+        fillTable(table,body);
+        actionsArea.appendChild(table);
     })
 
 </script>
