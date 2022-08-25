@@ -86,7 +86,7 @@
         <form>
             <h1>Submit Complaint</h1>
             <label for="desc">Complaint Description</label>
-            <textarea placeholder="Description" name="desc" required maxlength="200"></textarea>
+            <textarea id="descInput" placeholder="Description" name="desc" required maxlength="200"></textarea>
 
             <button id = "submitComplaint" type="button">Submit</button>
             <button id = "closeComplaintForm" type="button">Close</button>
@@ -138,34 +138,35 @@
     
     const reviewC = document.getElementById("showComplaints");
     const viewMeetings = document.getElementById("showMeetings");
-    const descInput = document.getElementById("cDescription");
 
     const makeMeeting = document.getElementById("makeMeetings");
     const mFormSubmit = document.getElementById("submitMeeting");
     const mFormClose = document.getElementById("closeMeetingForm");
 
-    const actionsArea = document.getElementById("councilActionsArea")
+    const actionsArea = document.getElementById("councilActionsArea");
 
 
-    // Report Complaint Pop-up
+    ////////////////// Report Complaint Pop-up  //////////////////
     reportC.addEventListener("click", function(event){
         document.getElementById("complaintForm").style.display = "flex";
     });
     cFormSubmit.addEventListener("click", async function(event){
-        const description = descInput.value;
-        let body = {cType: "Complaint", description: description};
+        console.log(document.getElementById("descInput").value);
+        const description = document.getElementById("descInput").value;
+        let body = {cType: "COMPLAINT", description: description};
 
         const response = await fetch(baseUrl + "/complaints", {
             method: 'POST',
             body: JSON.stringify(body)
         });
         body = await response.json();
+        document.getElementById("complaintForm").style.display = "none";
     });
     cFormClose.addEventListener("click", function(event){
         document.getElementById("complaintForm").style.display = "none";
     });
 
-    // Make Request Pop-up
+    ////////////////// Make Request Pop-up  //////////////////
     reportR.addEventListener("click", function(event){
         document.getElementById("requestForm").style.display = "flex";
     });
@@ -175,7 +176,8 @@
     rFormClose.addEventListener("click", function(event){
         document.getElementById("requestForm").style.display = "none";
     });
-    // Create Meeting
+    
+    ////////////////// Create Meeting  //////////////////
     makeMeeting.addEventListener("click", function(event){
         document.getElementById("meetingForm").style.display = "flex";
     });
@@ -196,34 +198,163 @@
         document.getElementById("meetingForm").style.display = "none";
     });
 
-    // Complaint and meetings tables
-    function fillTable(table, body){
-        const tr = document.createElement("tr");
-        for(let k of Object.keys(body[0])){
-            const th1 = document.createElement("th");
-            if(k.charAt(0) == 'c'){ k.replace(/c/, ''); }
-            th1.innerText = k.toUpperCase();
-            tr.appendChild(th1);
-        }
-        table.appendChild(tr);
+    ////////////////// Complaint and meetings tables  //////////////////
+    
+    document.addEventListener("click", async function(event){
+        const btn = event.target;
+        if(btn.className === "editComplaint"){
+            const id = btn.id;
+            const priority = document.getElementById(`priority${id}`);
+            const pVal = priority.options[priority.selectedIndex].value;
+            const meetingId = document.getElementById(`meetingId${id}`);
 
-        for(let c of body){
-            const tr = document.createElement("tr");
-            for(let k of Object.keys(c) ){
-                const td1 = document.createElement("td");
-                if(k == "date"){
-                    const date = new Date(c[k]*1000);
-                    td1.innerText = date.toISOString().replace(/T/, " ").replace(/.000Z/, "");;
-                }
-                else{ td1.innerText = c[k]; }
-                
-                tr.appendChild(td1);
+            console.log(`Id: ${id}  priority: ${pVal} meeting: ${meetingId.value}`);
+        
+            const response = await fetch(baseUrl + `/complaints/${id}/setMeeting/${meetingId.value}`, {
+                method: "PATCH"
+            });
+            if(pVal === "HIGH"){
+                await fetch(baseUrl + `/complaints/${id}/setHigh`, {method: "PATCH"});
+            }else if(pVal === "LOW"){
+                await fetch(baseUrl + `/complaints/${id}/setLow`, {method: "PATCH"});
+            }else if(pVal ==="IGNORED"){
+                await fetch(baseUrl + `/complaints/${id}/setIgnored`, {method: "PATCH"});
             }
-            table.appendChild(tr);
         }
+
+        if(btn.id === "cSortAll" ){
+            console.log("click");
+            document.getElementById("cSortUnreviewed").checked = false;
+            document.getElementById("cSortHigh").checked = false;
+            document.getElementById("cSortLow").checked = false;
+
+            const cardArea = document.getElementById("cardsArea");
+            while(cardArea.firstChild){cardArea.removeChild(cardArea.firstChild)}
+
+            const response = await fetch(baseUrl + `/complaints`, {method: "GET"});
+            const body = await response.json();
+
+            for(let b of body){
+                const div = document.createElement("div");
+                div.className = "complaintCard";
+                fillComplaintCard(div, b);
+                cardArea.appendChild(div);
+            }
+        }else if(btn.id === "cSortUnreviewed"){
+            document.getElementById("cSortAll").checked = false;
+            document.getElementById("cSortHigh").checked = false;
+            document.getElementById("cSortLow").checked = false;
+
+            const cardArea = document.getElementById("cardsArea");
+            while(cardArea.firstChild){cardArea.removeChild(cardArea.firstChild)}
+
+            const response = await fetch(baseUrl + `/complaints?priority=UNREVIEWED`, {method: "GET"});
+            const body = await response.json();
+
+            for(let b of body){
+                const div = document.createElement("div");
+                div.className = "complaintCard";
+                fillComplaintCard(div, b);
+                cardArea.appendChild(div);
+            }
+
+        }else if(btn.id === "cSortHigh"){
+            document.getElementById("cSortAll").checked = false;
+            document.getElementById("cSortUnreviewed").checked = false;
+            document.getElementById("cSortLow").checked = false;
+
+            const cardArea = document.getElementById("cardsArea");
+            while(cardArea.firstChild){cardArea.removeChild(cardArea.firstChild)}
+
+            const response = await fetch(baseUrl + `/complaints?priority=HIGH`, {method: "GET"});
+            const body = await response.json();
+
+            for(let b of body){
+                const div = document.createElement("div");
+                div.className = "complaintCard";
+                fillComplaintCard(div, b);
+                cardArea.appendChild(div);
+            }
+
+        }else if(btn.id === "cSortLow"){
+            document.getElementById("cSortAll").checked = false;
+            document.getElementById("cSortUnreviewed").checked = false;
+            document.getElementById("cSortHigh").checked = false;
+
+            const cardArea = document.getElementById("cardsArea");
+            while(cardArea.firstChild){cardArea.removeChild(cardArea.firstChild)}
+
+            const response = await fetch(baseUrl + `/complaints?priority=LOW`, {method: "GET"});
+            const body = await response.json();
+
+            for(let b of body){
+                const div = document.createElement("div");
+                div.className = "complaintCard";
+                fillComplaintCard(div, b);
+                cardArea.appendChild(div);
+            }
+        }
+        
+        
+    });
+    function fillComplaintCard(div, b){
+        const title = document.createElement("h3");
+            title.innerText = `${b.cType} ${b.id}`;
+        
+        const pLabel = document.createElement("label");
+            pLabel.setAttribute("for", "pInput");
+            pLabel.innerText = "Priority: ";
+        const priority = document.createElement("select");
+            priority.id = "priority" + b.id;
+            priority.name = "pInput";
+            const uOp = document.createElement("option");
+                uOp.innerText = "UNREVIEWED";
+            const hOp = document.createElement("option");
+                hOp.innerText = "HIGH";
+            const lOp = document.createElement("option");
+                lOp.innerText = "LOW";
+            const iOp = document.createElement("option");
+                iOp.innerText = "IGNORED";
+            priority.appendChild(uOp);
+            priority.appendChild(hOp);
+            priority.appendChild(lOp);
+            priority.appendChild(iOp);
+            priority.value = b.cPriority;
+        
+        const description = document.createElement("textArea");
+            description.disabled = true;
+            description.innerText = b.description;
+        
+        const mLabel = document.createElement("label");
+            mLabel.setAttribute("for", "mIdInput");
+            mLabel.innerText = "Meeting: ";
+        const meetingId = document.createElement("input");
+            meetingId.id = "meetingId" + b.id;
+            meetingId.name = "mIdInput";
+            meetingId.type = "number";
+            meetingId.value = b.meetingId;
+        
+        const date = document.createElement("p");
+        const dateString = new Date(b.date*1000);
+            date.innerText = `Report Date: ${dateString.toISOString().replace(/T/, " ").replace(/.000Z/, "")}`;
+
+        const edit = document.createElement("button");
+            edit.className = "editComplaint";
+            edit.id = b.id;
+            edit.innerText = "Confirm";
+
+        
+        div.appendChild(title);
+        div.appendChild(pLabel);
+        div.appendChild(priority);
+        div.appendChild(description);
+        div.appendChild(mLabel);
+        div.appendChild(meetingId);
+        div.appendChild(date);
+        div.appendChild(edit);
     }
     reviewC.addEventListener("click", async function(event){
-        if(actionsArea.firstChild){
+        while(actionsArea.firstChild){
             actionsArea.removeChild(actionsArea.firstChild);
         }
         
@@ -232,13 +363,73 @@
         })
         const body = await response.json();
 
-        const table = document.createElement("table");
-        fillTable(table, body);
+        const sortingDiv = document.createElement("div");
+            sortingDiv.className = "cardSorting";
+        const sortAll = document.createElement("input");
+            sortAll.type = "checkbox";
+            sortAll.name = "All";
+            sortAll.id = "cSortAll";
+            sortAll.checked = true;
+        const labelA = document.createElement("label"); labelA.for = "All"; labelA.innerText = "All";
+            
+        
+        const sortUnreviewed = document.createElement("input");
+            sortUnreviewed.type = "checkbox";
+            sortUnreviewed.name = "Unreviewed";
+            sortUnreviewed.id = "cSortUnreviewed";
+        const labelU = document.createElement("label"); labelU.for = "Unreviewed"; labelU.innerText = "Unreviewed";
+        
+        const sortHigh = document.createElement("input");
+            sortHigh.type = "checkbox";
+            sortHigh.name = "High";
+            sortHigh.id = "cSortHigh";
+        const labelH = document.createElement("label"); labelH.for = "High"; labelH.innerText = "High";
+            
+        
+        const sortLow = document.createElement("input");
+            sortLow.type= 'checkbox',
+            sortLow.name= "Low"
+            sortLow.id = "cSortLow";
+        const labelL = document.createElement("label"); labelL.for = "Low"; labelL.innerText = "Low";
+            
 
-        actionsArea.appendChild(table);
-    })
+        sortingDiv.appendChild(sortAll);
+        sortingDiv.appendChild(labelA);
+        sortingDiv.appendChild(sortUnreviewed);
+        sortingDiv.appendChild(labelU);
+        sortingDiv.appendChild(sortHigh);
+        sortingDiv.appendChild(labelH);
+        sortingDiv.appendChild(sortLow);
+        sortingDiv.appendChild(labelL);
+        actionsArea.appendChild(sortingDiv);
+
+        const cardsDiv = document.createElement("div");
+        cardsDiv.id = "cardsArea";
+        for(let b of body){
+            const div = document.createElement("div");
+            div.className = "complaintCard"
+            fillComplaintCard(div, b);
+            cardsDiv.appendChild(div);
+        }
+        actionsArea.appendChild(cardsDiv);
+        
+    });
+
+    function fillMeetingCard(div, b){
+        const title = document.createElement("h3");
+        title.innerText = `Meeting ${b.id}`;
+        const address = document.createElement("h5");
+        address.innerText = `Address: ${b.address}`;
+        const date = document.createElement("p");
+        const dateString = new Date(b.date*1000);
+        date.innerText = `Report Date: ${dateString.toISOString().replace(/T/, " ").replace(/.000Z/, "")}`;
+
+        div.appendChild(title);
+        div.appendChild(address);
+        div.appendChild(date);
+    }
     viewMeetings.addEventListener("click", async function(event){
-        if(actionsArea.firstChild){
+        while(actionsArea.firstChild){
             actionsArea.removeChild(actionsArea.firstChild);
         }
         const response = await fetch(baseUrl + "/meetings", {
@@ -246,10 +437,12 @@
         })
         const body = await response.json();
 
-        const table = document.createElement("table");
-        fillTable(table,body);
-        actionsArea.appendChild(table);
-    })
+        for(let b of body){
+            const div = document.createElement("div");
+            fillMeetingCard(div, b);
+            actionsArea.appendChild(div);
+        }
+    });
 
 </script>
 </html>

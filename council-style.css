@@ -111,11 +111,63 @@ header{
 }
 
 #councilActionsArea{
-    display:flex;
+    background-color: azure;
+    justify-content: center;
+    
+}
+
+.cardSorting{
+    display: flex;
     justify-content: center;
 }
-#councilActionsArea table{
-    width: 80vw;
+.cardSorting input{
+    align-self:center;
+    margin:0vw 1vw;
+}
+
+#cardsArea{
+    display:flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    width: 98vw;
+    height: 60vh;
+    justify-content: center;
+}
+
+.complaintCard{
+    background-color: var(--theme-offwhite);
+    width: 20vw;
+    height:fit-content;
+    margin: 2.5vh 2.5vh;
+    
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.complaintCard textarea{
+    width: 19vw;
+    height: 10vh;
+    font-size: 12pt;
+
+    
+    resize: none;
+}
+.complaintCard p{
+    font-size: 14pt;
+}
+.complaintCard select{
+    font-size: 18pt;
+    border: none;
+}
+.complaintCard input{
+    font-size: 18pt;
+    width:5vw;
+    text-align: center;
+}
+.complaintCard button{
+    width:15vw;
+    height:5vh;
+    margin-bottom: 0.5vh;
 }
 
 
@@ -123,7 +175,6 @@ header{
 footer{
     background-color: var(--theme-offwhite);
 }
-
 .popUp{
     display: none;
     background-color: aliceblue;
@@ -140,7 +191,6 @@ footer{
 
 
 }
-
 form{
     display:flex;
     width:100%;
@@ -157,7 +207,6 @@ form textarea{
     font-size: 13pt;
      
 }
-
 #submitComplaint{
     margin-top: 10%;
 }
