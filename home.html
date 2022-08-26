@@ -19,8 +19,8 @@
             <p>Contact Us</p>
         </div>
         <div id = "login">
-            <p>Login</p>
-            <p>Sign up</p>
+            <button id = "loginBtn">Login</p>
+            <button id = "signUpBtn">Sign up</p>
         </div>
         
     </header>
@@ -58,13 +58,15 @@
 
         <div class = "infoBlock">
             <h3>Council Information</h3>
-            <p><i>Login or Sign up for more options</i></p>
+            <p id="LStip"><i>Login or Sign up for more options</i></p>
             <div class = "infoBlock_items">
                 <button id = "makeComplaint">Report Complaint</button>
                 <button id = "requestAccount">Request Account</button>
+                <button id = "makeRequest" style ="display: none;">Make Request</button>
                 <button id = "showMeetings">View Council Meetings</button>
-                <button id = "makeMeetings">Create Meetings</button>
-                <button id="showComplaints">Review Complaints</button>
+                <button id = "makeMeetings" style="display: none;">Create Meetings</button>
+                <button id= "showComplaints" style="display: none;">Review Complaints</button>
+                <button id = "createUser" style="display: none;">Create User</button>
                 
             </div>
             <div id = "councilActionsArea">
@@ -81,16 +83,32 @@
         <p>f</p>
     </footer>
 
+    <div class = "popUpContainer" id = "loginBackDrop">
+        <div class = "popUp" id = "loginForm">
+            <form>
+                <h1>Log In</h1>
+                <label for="username">Username</label>
+                <input id = "loginUsername" name = "username" type="text">
+                <label for="password">Password</label>
+                <input id = "loginPassword" name = "password" type="password">
+    
+                <button id = "submitLogin" type="button">Submit</button>
+                <button id = "closeLogin" type="button">Close</button>
+            </form>
+        </div>
+    </div>
 
-    <div class = "popUp" id = "complaintForm">
-        <form>
-            <h1>Submit Complaint</h1>
-            <label for="desc">Complaint Description</label>
-            <textarea id="descInput" placeholder="Description" name="desc" required maxlength="200"></textarea>
-
-            <button id = "submitComplaint" type="button">Submit</button>
-            <button id = "closeComplaintForm" type="button">Close</button>
-        </form>
+    <div class = "popUpContainer" id = "complaintBackDrop">
+        <div class = "popUp" id = "complaintForm">
+            <form>
+                <h1>Submit Complaint</h1>
+                <label for="desc">Complaint Description</label>
+                <textarea id="descInput" placeholder="Description" name="desc" required maxlength="200"></textarea>
+    
+                <button id = "submitComplaint" type="button">Submit</button>
+                <button id = "closeComplaintForm" type="button">Close</button>
+            </form>
+        </div>
     </div>
 
     <div class = "popUp" id = "requestForm">
@@ -128,6 +146,11 @@
 <script>
     const baseUrl = "http://localhost:8080";
 
+    const login = document.getElementById("loginBtn");
+    const submitLogin = document.getElementById("submitLogin");
+    const closeLogin = document.getElementById("closeLogin");
+    const signUp = document.getElementById("signUpBtn");
+
     const reportC = document.getElementById("makeComplaint");
     const cFormSubmit = document.getElementById("submitComplaint");
     const cFormClose = document.getElementById("closeComplaintForm");
@@ -135,6 +158,8 @@
     const reportR = document.getElementById("requestAccount");
     const rFormSubmit = document.getElementById("submitRequest");
     const rFormClose = document.getElementById("closeRequestForm");
+
+    const makeRequest = document.getElementById("makeRequest");
     
     const reviewC = document.getElementById("showComplaints");
     const viewMeetings = document.getElementById("showMeetings");
@@ -143,11 +168,65 @@
     const mFormSubmit = document.getElementById("submitMeeting");
     const mFormClose = document.getElementById("closeMeetingForm");
 
+    const createUser = document.getElementById("createUser");
+
     const actionsArea = document.getElementById("councilActionsArea");
 
+    login.addEventListener("click", function(event){
+        document.getElementById("loginBackDrop").style.display = "flex";
+        document.getElementById("loginForm").style.display = "flex";
+    });
+    submitLogin.addEventListener("click", async function(event){
+        const username = document.getElementById("loginUsername").value;
+        const password = document.getElementById("loginPassword").value;
+        const credentials = {username, password};
+
+        const response = await fetch(baseUrl + "/login", {
+            method: "POST",
+            body: JSON.stringify(credentials)
+        });
+        
+        if(response.status === 200){
+            alert("Login Successful!");
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("loginBackDrop").style.display = "none";
+            
+            const user = await response.json();
+            user.password = null;
+
+            if(user.userType === "COUNCIL"){
+                makeMeeting.style.display = "flex";
+                reviewC.style.display = "flex";
+                createUser.style.display = "flex";
+                reportC.style.display = "none";
+                reportR.style.display = "none";
+
+                document.getElementById("LStip").style.display = "none";
+                
+            }
+            else if(user.userType === "CONSTITUENT"){
+                makeRequest.style.display = "flex";
+                reportR.style.display = "none";
+
+                document.getElementById("LStip").style.display = "none";
+            }
+        }else if(response.status === 400){
+            alert("Login Failed");
+        }
+        
+        
+    });
+    closeLogin.addEventListener("click", function(event){
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("loginBackDrop").style.display = "none";
+    });
+    signUp.addEventListener("click", async function(event){
+
+    });
 
     ////////////////// Report Complaint Pop-up  //////////////////
     reportC.addEventListener("click", function(event){
+        document.getElementById("complaintBackDrop").style.display = "flex";
         document.getElementById("complaintForm").style.display = "flex";
     });
     cFormSubmit.addEventListener("click", async function(event){
@@ -161,9 +240,11 @@
         });
         body = await response.json();
         document.getElementById("complaintForm").style.display = "none";
+        document.getElementById("complaintBackDrop").style.display = "none";
     });
     cFormClose.addEventListener("click", function(event){
         document.getElementById("complaintForm").style.display = "none";
+        document.getElementById("complaintBackDrop").style.display = "none";
     });
 
     ////////////////// Make Request Pop-up  //////////////////
