@@ -15,7 +15,7 @@
         </div>
         <div id = "nav">
             <p>About</p>
-            <p>Report Complaint</p>
+            <p>Council Actions</p>
             <p>Contact Us</p>
         </div>
         <div id = "login">
@@ -28,36 +28,72 @@
     <div class = "content">
 
         <div class = "floating">
-            <h3>Life Redefined</h3>
-            <h4>Live Better in <i>Paradise</i></h4>
+            <h3 style="font-size: 60pt;">Life Redefined</h3>
+            <h4 style="font-size: 36pt;">Live Better in <i>Paradise</i></h4>
         </div>
         
         <div class = "infoBlock">
-            <h3>Life Redefined</h3>
-            <h4>Get all your needs catered to with our all inclusive <i>LIFE</i> package</h4>
+            <div>
+                <h3 style="padding-top:2vh; font-size: 50pt;">Life in the Vale</h3>
+                <h4>Get all your needs catered to with our all inclusive <i>LIFE</i> package</h4>
+            </div>
             <div class = "infoBlock_items">
-                <p>Best chefs in the world</p>
-                <p>Housing</p>
-                <p>Transportation</p>
-                <p>Activities</p>
-                <p>Custom Requests</p>
+                <div>
+                    <img src="skyscrapers.png" class="icon">
+                    <h6 style="font-size: 28pt">Housing</h6>
+                    <p>Select your new new from over 500 different models varying in size from single floors
+                        to entire three story penthouses. All furnishing is included and built to your specifications.
+                    </p>
+                </div>
+                <div>
+                    <img src="helicopter.png" class="icon">
+                    <h6 style="font-size: 28pt">Transportation</h6>
+                    <p>Automated helicopters and luxury cars are availible at all times to take residents wherever they wish
+                        to go. 
+                    </p>
+                </div>
+                <div>
+                    <img src="health.png" class="icon">
+                    <h6 style="font-size: 28pt">Health and Wellness</h6>
+                    <p>
+                        The health and happiness of our residents is our highest concern. We have all the best health specialists
+                        in the world to make sure you're happy and healthy as long as you live here.
+                    </p>
+                </div>
+                <div>
+                    <img src="24-7.png" class="icon">
+                    <h6 style="font-size: 28pt">Custom Requests</h6>
+                    <p>
+                        Any desire you may have is our pleasure to fulfill. We have a 24/7 request fulfillment service to
+                        see to your every want and need. If you dream it we'll make it happen. 
+                    </p>
+                </div>
             </div>
         </div>
 
         
         <div class = "infoBlock">
-            <h3>How we do it</h3>
+            <div class="infoBlock_spacer">
+                <h3><u>Schedule a Free Tour Today</u></h3>
+            </div>
+            <h3 style="padding-top:2vh; font-size: 50pt;">How We Do It</h3>
             <div class = "infoBlock_items">
-                <p>The entire city is run by robot working underneath the city to see to your need and desire. 
+                <img src="https://static01.nyt.com/images/2012/08/19/business/JP-ROBOT-1/JP-ROBOT-1-superJumbo.jpg">
+                <p style="padding-top:10vh; font-size: 30pt;">
+                    The entire city is run by robots working underneath the city to see to your every need and desire. 
                     Your request is their sole mission. With our revolutionary AI and automated
-                    robot production and education system, no request is too big or or too difficult for them to fulfill
+                    robot production facility and fast AI education system, no request is too big or
+                     too difficult for them to fulfill. Once you have recieved an account, you can
+                     begin your dream lifestyle.
                 </p>
             </div>
             
         </div>
 
-        <div class = "infoBlock">
-            <h3>Council Information</h3>
+        <div class = "infoBlock" style="margin:50vh 0vw 50vh">
+            <div class="infoBlock_spacer">
+                <h3 >Council Information</h3>
+            </div>
             <p id="LStip"><i>Login or Sign up for more options</i></p>
             <div class = "infoBlock_items">
                 <button id = "makeComplaint">Report Complaint</button>
@@ -76,24 +112,29 @@
     </div>
 
     <footer>
-        <p>s</p>
-        <p>t</p>
-        <p>u</p>
-        <p>f</p>
-        <p>f</p>
+        <p style="font-size:22pt; padding-top:2vh">Contact Us:</p>
+        <a href="">citycouncil@ilusvale.com</a>
+        <a href="">Myspace Group</a>
+        <a>Customer Service: +1 (123)-456-789</a>
+        <a href="secret-page.html" style="color: rgb(93,144,166)">Don't click me</a>
     </footer>
 
     <div class = "popUpContainer" id = "loginBackDrop">
         <div class = "popUp" id = "loginForm">
             <form>
                 <h1>Log In</h1>
-                <label for="username">Username</label>
-                <input id = "loginUsername" name = "username" type="text">
-                <label for="password">Password</label>
-                <input id = "loginPassword" name = "password" type="password">
+                <div>
+                    <label for="username">Username: </label>
+                    <input id = "loginUsername" name = "username" type="text">
+                </div>
+                <div>
+                    <label for="password">Password: </label>
+                    <input id = "loginPassword" name = "password" type="password">
+                </div>
+                
     
-                <button id = "submitLogin" type="button">Submit</button>
-                <button id = "closeLogin" type="button">Close</button>
+                <button id = "submitLogin" type="button" class="formSubmit">Submit</button>
+                <button id = "closeLogin" type="button" class="formClose">Close</button>
             </form>
         </div>
     </div>
@@ -105,40 +146,62 @@
                 <label for="desc">Complaint Description</label>
                 <textarea id="descInput" placeholder="Description" name="desc" required maxlength="200"></textarea>
     
-                <button id = "submitComplaint" type="button">Submit</button>
-                <button id = "closeComplaintForm" type="button">Close</button>
+                <button id = "submitComplaint" type="button" class="formSubmit">Submit</button>
+                <button id = "closeComplaintForm" type="button" class="formClose">Close</button>
             </form>
         </div>
     </div>
 
-    <div class = "popUp" id = "requestForm">
-        <form>
-            <h1>Submit Request</h1>
-            <input type="text">
-            <label for="usr">Request</label>
-            <select name="usr" id="usrSelect">
-                <option>thing1</option>
-                <option>thing2</option>
-                <option>thing3</option>
-            </select>
+    <div class = "popUpContainer" id = "requestBackDrop">
+        <div class = "popUp" id = "requestForm">
+            <form>
+                <h1>Submit Request</h1>
+                <h2 id="reqType">Request Account Form</h2>
+                
+                <label for="desc">Request Description</label>
+                <textarea id="reqDescInput" placeholder="Name and address for account or Meeting Id to request to speak" name="desc" required maxlength="200"></textarea>
 
-            <button id = "submitRequest" type="button">Submit</button>
-            <button id = "closeRequestForm" type="button">Close</button>
-        </form>
+                <button id = "submitRequest" type="button" class="formSubmit">Submit</button>
+                <button id = "closeRequestForm" type="button" class="formClose">Close</button>
+            </form>
+        </div>
+    </div>
+    <div class = "popUpContainer" id = "meetingBackDrop">
+        <div class = "popUp" id = "meetingForm">
+            <form>
+                <h1>Create New Meeting</h1>
+                <label for="date">Pick Date</label>
+                <input type="datetime-local" id="meetDateInput" name="date">
+
+                <label for="addy">Address</label>
+                <input type="text" placeholder="123 paradise blvd" id="addressInput" name="addy">
+
+                <button id = "submitMeeting" type="button" class="formSubmit">Add Meeting</button>
+                <button id = "closeMeetingForm" type="button" class="formClose">Close</button>
+            </form>
+        </div>
     </div>
 
-    <div class = "popUp" id = "meetingForm">
-        <form>
-            <h1>Create New Meeting</h1>
-            <label for="date">Pick Date</label>
-            <input type="datetime-local" id="meetDateInput" name="date">
+    <div class = "popUpContainer" id = "userBackDrop">
+        <div class = "popUp" id = "userForm">
+            <form>
+                <h1>Create New User</h1>
+                <label for="name">Username</label>
+                <input type="text" id="createUserName" name="name">
 
-            <label for="addy">Address</label>
-            <input type="text" placeholder="123 paradise blvd" id="addressInput" name="addy">
+                <label for="password">Password</label>
+                <input type="text"  id="createUserPassword" name="password">
 
-            <button id = "submitMeeting" type="button">Add Meeting</button>
-            <button id = "closeMeetingForm" type="button">Close</button>
-        </form>
+                <label for="userType">User Type</label>
+                <select id="createUserType">
+                    <option>COUNCIL</option>
+                    <option>CONSTITUENT</option>
+                </select>
+
+                <button id = "submitUser" type="button" class="formSubmit">Add User</button>
+                <button id = "closeUser" type="button" class="formClose">Close</button>
+            </form>
+        </div>
     </div>
 
 </body>
@@ -151,15 +214,14 @@
     const closeLogin = document.getElementById("closeLogin");
     const signUp = document.getElementById("signUpBtn");
 
-    const reportC = document.getElementById("makeComplaint");
+    const makeComplaint = document.getElementById("makeComplaint");
     const cFormSubmit = document.getElementById("submitComplaint");
     const cFormClose = document.getElementById("closeComplaintForm");
 
-    const reportR = document.getElementById("requestAccount");
-    const rFormSubmit = document.getElementById("submitRequest");
-    const rFormClose = document.getElementById("closeRequestForm");
-
+    const requestAccount = document.getElementById("requestAccount");
     const makeRequest = document.getElementById("makeRequest");
+    const rASubmit = document.getElementById("submitRequest");
+    const rAClose = document.getElementById("closeRequestForm");
     
     const reviewC = document.getElementById("showComplaints");
     const viewMeetings = document.getElementById("showMeetings");
@@ -169,12 +231,13 @@
     const mFormClose = document.getElementById("closeMeetingForm");
 
     const createUser = document.getElementById("createUser");
+    const userSubmit = document.getElementById("submitUser");
+    const userClose = document.getElementById("closeUser");
 
     const actionsArea = document.getElementById("councilActionsArea");
 
     login.addEventListener("click", function(event){
         document.getElementById("loginBackDrop").style.display = "flex";
-        document.getElementById("loginForm").style.display = "flex";
     });
     submitLogin.addEventListener("click", async function(event){
         const username = document.getElementById("loginUsername").value;
@@ -188,36 +251,41 @@
         
         if(response.status === 200){
             alert("Login Successful!");
-            document.getElementById("loginForm").style.display = "none";
             document.getElementById("loginBackDrop").style.display = "none";
             
             const user = await response.json();
             user.password = null;
 
+            makeComplaint.style.display = "none";
+            requestAccount.style.display = "none";
+            makeRequest.style.display = "none";
+            makeMeeting.style.display = "none";
+            reviewC.style.display = "none";
+            createUser.style.display = "none";
+
             if(user.userType === "COUNCIL"){
-                makeMeeting.style.display = "flex";
-                reviewC.style.display = "flex";
-                createUser.style.display = "flex";
-                reportC.style.display = "none";
-                reportR.style.display = "none";
+                makeMeeting.style.display = "block";
+                reviewC.style.display = "block";
+                createUser.style.display = "block";
 
                 document.getElementById("LStip").style.display = "none";
                 
             }
             else if(user.userType === "CONSTITUENT"){
-                makeRequest.style.display = "flex";
-                reportR.style.display = "none";
+                makeRequest.style.display = "block";
+                makeComplaint.style.display = "block";
 
                 document.getElementById("LStip").style.display = "none";
             }
         }else if(response.status === 400){
             alert("Login Failed");
         }
+
+                
         
         
     });
     closeLogin.addEventListener("click", function(event){
-        document.getElementById("loginForm").style.display = "none";
         document.getElementById("loginBackDrop").style.display = "none";
     });
     signUp.addEventListener("click", async function(event){
@@ -225,12 +293,10 @@
     });
 
     ////////////////// Report Complaint Pop-up  //////////////////
-    reportC.addEventListener("click", function(event){
+    makeComplaint.addEventListener("click", function(event){
         document.getElementById("complaintBackDrop").style.display = "flex";
-        document.getElementById("complaintForm").style.display = "flex";
     });
     cFormSubmit.addEventListener("click", async function(event){
-        console.log(document.getElementById("descInput").value);
         const description = document.getElementById("descInput").value;
         let body = {cType: "COMPLAINT", description: description};
 
@@ -239,28 +305,44 @@
             body: JSON.stringify(body)
         });
         body = await response.json();
-        document.getElementById("complaintForm").style.display = "none";
         document.getElementById("complaintBackDrop").style.display = "none";
     });
     cFormClose.addEventListener("click", function(event){
-        document.getElementById("complaintForm").style.display = "none";
         document.getElementById("complaintBackDrop").style.display = "none";
     });
 
-    ////////////////// Make Request Pop-up  //////////////////
-    reportR.addEventListener("click", function(event){
-        document.getElementById("requestForm").style.display = "flex";
+    ////////////////// Make Request Account Pop-up  //////////////////
+    requestAccount.addEventListener("click", function(event){
+        document.getElementById("reqType").innerText = "Request Account";
+        document.getElementById("reqDescInput").placeholder = "Enter Name and Address for Council Approval";
+        document.getElementById("requestBackDrop").style.display = "flex";
     });
-    rFormSubmit.addEventListener("click", async function(event){
-        document.getElementById("requestForm").style.display = "none";
+    rASubmit.addEventListener("click", async function(event){
+        const description = document.getElementById("reqDescInput").value;
+        const reqType = document.getElementById("reqType").innerText;
+        let body = {cType: "REQUEST", description: reqType + ": " + description};
+
+        const response = await fetch(baseUrl + "/complaints", {
+            method: 'POST',
+            body: JSON.stringify(body)
+        });
+        body = await response.json();
+        document.getElementById("requestBackDrop").style.display = "none";
     });
-    rFormClose.addEventListener("click", function(event){
-        document.getElementById("requestForm").style.display = "none";
+    rAClose.addEventListener("click", function(event){
+        document.getElementById("requestBackDrop").style.display = "none";
+    });
+    
+    ////////////////// Make Request Thing Pop-up  //////////////////
+    makeRequest.addEventListener("click", function(event){
+        document.getElementById("reqType").innerText = "General Request";
+        document.getElementById("reqDescInput").placeholder = "Enter description of request here";
+        document.getElementById("requestBackDrop").style.display = "flex";
     });
     
     ////////////////// Create Meeting  //////////////////
     makeMeeting.addEventListener("click", function(event){
-        document.getElementById("meetingForm").style.display = "flex";
+        document.getElementById("meetingBackDrop").style.display = "flex";
     });
     mFormSubmit.addEventListener("click", async function(event){
         const date = document.getElementById("meetDateInput").value;
@@ -274,13 +356,37 @@
             body: JSON.stringify(body)
         });
         body = await response.json();
+        document.getElementById("meetingBackDrop").style.display = "none";
     });
     mFormClose.addEventListener("click", function(event){
-        document.getElementById("meetingForm").style.display = "none";
+        document.getElementById("meetingBackDrop").style.display = "none";
     });
 
-    ////////////////// Complaint and meetings tables  //////////////////
-    
+    ////////////////// Create Meeting  //////////////////
+    createUser.addEventListener("click", function(event){
+        document.getElementById("userBackDrop").style.display = "flex";
+    });
+    userSubmit.addEventListener("click", async function(event){
+        const username = document.getElementById("createUserName").value;
+        const password = document.getElementById("createUserPassword").value;
+        const userTypeElem = document.getElementById("createUserType");
+        const userType = userTypeElem.options[userTypeElem.selectedIndex].value;
+
+        
+        let body = {username, userType, password};
+
+        const response = await fetch(baseUrl + "/users", {
+            method: 'POST',
+            body: JSON.stringify(body)
+        });
+        body = await response.json();
+        document.getElementById("userBackDrop").style.display = "none";
+    });
+    userClose.addEventListener("click", function(event){
+        document.getElementById("userBackDrop").style.display = "none";
+    });
+
+    ////////////////// Complaint Table  //////////////////
     document.addEventListener("click", async function(event){
         const btn = event.target;
         if(btn.className === "editComplaint"){
@@ -303,69 +409,53 @@
             }
         }
 
-        if(btn.id === "cSortAll" ){
-            console.log("click");
-            document.getElementById("cSortUnreviewed").checked = false;
-            document.getElementById("cSortHigh").checked = false;
-            document.getElementById("cSortLow").checked = false;
+        if(btn.className === "sortBox"){
+            
+            if(btn.id === "cShow"){
+                document.getElementById("rShow").checked = false;
 
-            const cardArea = document.getElementById("cardsArea");
-            while(cardArea.firstChild){cardArea.removeChild(cardArea.firstChild)}
+            }else if(btn.id === "rShow"){
+                document.getElementById("cShow").checked = false;
 
-            const response = await fetch(baseUrl + `/complaints`, {method: "GET"});
-            const body = await response.json();
+            }else if(btn.id === "cSortAll" ){
+                document.getElementById("cSortUnreviewed").checked = false;
+                document.getElementById("cSortHigh").checked = false;
+                document.getElementById("cSortLow").checked = false;
 
-            for(let b of body){
-                const div = document.createElement("div");
-                div.className = "complaintCard";
-                fillComplaintCard(div, b);
-                cardArea.appendChild(div);
-            }
-        }else if(btn.id === "cSortUnreviewed"){
-            document.getElementById("cSortAll").checked = false;
-            document.getElementById("cSortHigh").checked = false;
-            document.getElementById("cSortLow").checked = false;
+            }else if(btn.id === "cSortUnreviewed"){
+                document.getElementById("cSortAll").checked = false;
+                document.getElementById("cSortHigh").checked = false;
+                document.getElementById("cSortLow").checked = false;
 
-            const cardArea = document.getElementById("cardsArea");
-            while(cardArea.firstChild){cardArea.removeChild(cardArea.firstChild)}
+            }else if(btn.id === "cSortHigh"){
+                document.getElementById("cSortAll").checked = false;
+                document.getElementById("cSortUnreviewed").checked = false;
+                document.getElementById("cSortLow").checked = false;
 
-            const response = await fetch(baseUrl + `/complaints?priority=UNREVIEWED`, {method: "GET"});
-            const body = await response.json();
-
-            for(let b of body){
-                const div = document.createElement("div");
-                div.className = "complaintCard";
-                fillComplaintCard(div, b);
-                cardArea.appendChild(div);
+            }else if(btn.id === "cSortLow"){
+                document.getElementById("cSortAll").checked = false;
+                document.getElementById("cSortUnreviewed").checked = false;
+                document.getElementById("cSortHigh").checked = false;
             }
 
-        }else if(btn.id === "cSortHigh"){
-            document.getElementById("cSortAll").checked = false;
-            document.getElementById("cSortUnreviewed").checked = false;
-            document.getElementById("cSortLow").checked = false;
-
+            if(document.getElementById("cShow").checked === true) typeSelect = "COMPLAINT";
+            if(document.getElementById("rShow").checked === true) typeSelect = "REQUEST";
+            if(document.getElementById("cSortAll").checked === true) prioritySelect = null;
+            if(document.getElementById("cSortUnreviewed").checked === true) prioritySelect = "UNREVIEWED";
+            if(document.getElementById("cSortHigh").checked === true) prioritySelect = "HIGH";
+            if(document.getElementById("cSortLow").checked === true) prioritySelect = "LOW";
+            
             const cardArea = document.getElementById("cardsArea");
             while(cardArea.firstChild){cardArea.removeChild(cardArea.firstChild)}
 
-            const response = await fetch(baseUrl + `/complaints?priority=HIGH`, {method: "GET"});
-            const body = await response.json();
-
-            for(let b of body){
-                const div = document.createElement("div");
-                div.className = "complaintCard";
-                fillComplaintCard(div, b);
-                cardArea.appendChild(div);
+            let path = null;
+            if(prioritySelect == null){
+                path = baseUrl + `/complaints?cType=${typeSelect}`;
+            }else{
+                path = baseUrl + `/complaints?priority=${prioritySelect}&cType=${typeSelect}`;
             }
-
-        }else if(btn.id === "cSortLow"){
-            document.getElementById("cSortAll").checked = false;
-            document.getElementById("cSortUnreviewed").checked = false;
-            document.getElementById("cSortHigh").checked = false;
-
-            const cardArea = document.getElementById("cardsArea");
-            while(cardArea.firstChild){cardArea.removeChild(cardArea.firstChild)}
-
-            const response = await fetch(baseUrl + `/complaints?priority=LOW`, {method: "GET"});
+            console.log(path);
+            const response = await fetch(path, {method: "GET"});
             const body = await response.json();
 
             for(let b of body){
@@ -375,8 +465,6 @@
                 cardArea.appendChild(div);
             }
         }
-        
-        
     });
     function fillComplaintCard(div, b){
         const title = document.createElement("h3");
@@ -416,8 +504,9 @@
             meetingId.value = b.meetingId;
         
         const date = document.createElement("p");
-        const dateString = new Date(b.date*1000);
-            date.innerText = `Report Date: ${dateString.toISOString().replace(/T/, " ").replace(/.000Z/, "")}`;
+        const dS = new Date(b.date*1000);
+        let minutes = dS.getMinutes() > 9 ? dS.getMinutes() : "0" + dS.getMinutes();
+        date.innerText = `Date: ${dS.getMonth()}-${dS.getDate()}-${dS.getFullYear()}  Time: ${dS.getHours()}:${minutes}`;
 
         const edit = document.createElement("button");
             edit.className = "editComplaint";
@@ -439,17 +528,36 @@
             actionsArea.removeChild(actionsArea.firstChild);
         }
         
-        const response = await fetch(baseUrl + "/complaints", {
+        const response = await fetch(baseUrl + "/complaints?cType=COMPLAINT", {
             method: 'GET'
         })
         const body = await response.json();
 
         const sortingDiv = document.createElement("div");
             sortingDiv.className = "cardSorting";
+
+        const sortComplaints = document.createElement("input");
+            sortComplaints.type = "checkbox";
+            sortComplaints.name = "Complaints";
+            sortComplaints.id = "cShow";
+            sortComplaints.className = "sortBox";
+            sortComplaints.checked = true;
+        const labelComplaints = document.createElement("label"); labelComplaints.for = "Complaints"; labelComplaints.innerText = "Complaints";
+
+        const sortRequests = document.createElement("input");
+            sortRequests.type = "checkbox";
+            sortRequests.name = "Requests";
+            sortRequests.id = "rShow";
+            sortRequests.className = "sortBox";
+        const labelRequests = document.createElement("label"); labelRequests.for = "Requests"; labelRequests.innerText = "Requests";
+
+
+
         const sortAll = document.createElement("input");
             sortAll.type = "checkbox";
             sortAll.name = "All";
             sortAll.id = "cSortAll";
+            sortAll.className = "sortBox";
             sortAll.checked = true;
         const labelA = document.createElement("label"); labelA.for = "All"; labelA.innerText = "All";
             
@@ -458,12 +566,14 @@
             sortUnreviewed.type = "checkbox";
             sortUnreviewed.name = "Unreviewed";
             sortUnreviewed.id = "cSortUnreviewed";
+            sortUnreviewed.className = "sortBox";
         const labelU = document.createElement("label"); labelU.for = "Unreviewed"; labelU.innerText = "Unreviewed";
         
         const sortHigh = document.createElement("input");
             sortHigh.type = "checkbox";
             sortHigh.name = "High";
             sortHigh.id = "cSortHigh";
+            sortHigh.className = "sortBox";
         const labelH = document.createElement("label"); labelH.for = "High"; labelH.innerText = "High";
             
         
@@ -471,9 +581,14 @@
             sortLow.type= 'checkbox',
             sortLow.name= "Low"
             sortLow.id = "cSortLow";
+            sortLow.className = "sortBox";
         const labelL = document.createElement("label"); labelL.for = "Low"; labelL.innerText = "Low";
             
-
+        sortingDiv.appendChild(sortComplaints);
+        sortingDiv.appendChild(labelComplaints);
+        sortingDiv.appendChild(sortRequests);
+        sortingDiv.appendChild(labelRequests);
+        
         sortingDiv.appendChild(sortAll);
         sortingDiv.appendChild(labelA);
         sortingDiv.appendChild(sortUnreviewed);
@@ -496,33 +611,67 @@
         
     });
 
-    function fillMeetingCard(div, b){
+    ////////////////// Meeting Table  //////////////////
+    function fillMeetingCard(div, b, complaints){
         const title = document.createElement("h3");
-        title.innerText = `Meeting ${b.id}`;
-        const address = document.createElement("h5");
-        address.innerText = `Address: ${b.address}`;
-        const date = document.createElement("p");
-        const dateString = new Date(b.date*1000);
-        date.innerText = `Report Date: ${dateString.toISOString().replace(/T/, " ").replace(/.000Z/, "")}`;
+            title.innerText = `Meeting ${b.id}`;
+        const address = document.createElement("h6");
+            address.innerText = `Address: ${b.address}`;
+        const date = document.createElement("h6");
+            const dS = new Date(b.date*1000);
+            let minutes = dS.getMinutes() > 9 ? dS.getMinutes() : "0" + dS.getMinutes();
+            date.innerText = `Date: ${dS.getMonth()}-${dS.getDate()}-${dS.getFullYear()}  Time: ${dS.getHours()}:${minutes}`;
+
+        
 
         div.appendChild(title);
+        
+        
+
+        if(complaints.length > 0){
+            const assignedC = document.createElement("label");
+                assignedC.innerText = "Topics";
+                assignedC.setAttribute("for", "topics");
+            div.appendChild(assignedC);
+
+            const topicsArea = document.createElement("div");
+                topicsArea.name = "topics";
+                topicsArea.id = "topicsArea";
+            for(let c of complaints){
+                if(c.cType !== "REQUEST"){
+                    const cItem = document.createElement("p");
+                    cItem.innerText = "--" + c.description;
+                    topicsArea.appendChild(cItem);
+                }
+            }
+            div.appendChild(topicsArea);
+        }
+
         div.appendChild(address);
         div.appendChild(date);
+        
     }
     viewMeetings.addEventListener("click", async function(event){
-        while(actionsArea.firstChild){
-            actionsArea.removeChild(actionsArea.firstChild);
-        }
+        while(actionsArea.firstChild){ actionsArea.removeChild(actionsArea.firstChild); }
+        
         const response = await fetch(baseUrl + "/meetings", {
             method: 'GET'
         })
         const body = await response.json();
 
+        const cardsDiv = document.createElement("div");
+        cardsDiv.id = "cardsArea";
         for(let b of body){
+            if(b.id === -1) continue; //dont execute dummy meeting
             const div = document.createElement("div");
-            fillMeetingCard(div, b);
-            actionsArea.appendChild(div);
+            div.className = "complaintCard";
+            const cResponse = await fetch(baseUrl + `/complaints?meetingId=${b.id}&cType=COMPLAINT`, {method: 'GET'})
+            const complaints = await cResponse.json();
+
+            fillMeetingCard(div, b, complaints);
+            cardsDiv.appendChild(div);
         }
+        actionsArea.appendChild(cardsDiv);
     });
 
 </script>
