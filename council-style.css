@@ -13,11 +13,9 @@
 }
 
 body {
-    
     background-size:cover;
     background-image: url("city-art.jpg");
     background-attachment: fixed;
-    
 }
 
 .dancing{
@@ -86,11 +84,8 @@ header{
 
 .infoBlock{
     background-color: var(--theme-offwhite);
-    width:100vw;
+    width:auto;
     height:auto;
-
-    
-
     text-align: center;
     font-size: 24pt;
 }
@@ -98,7 +93,7 @@ header{
     padding-top: 7vh;
     padding-bottom: 7vh;
     margin:0;
-    width:100vw;
+    width:auto;
     height: fit-content;
     background-image: radial-gradient(var(--theme-darkblue), rgba(47, 125, 158,0.8), rgba(47, 125, 158,0.5));
     color: var(--theme-offwhite);
@@ -123,7 +118,8 @@ header{
     border-radius: 10px;
 }
 .infoBlock_items div{
-    margin: 1vw;
+    width:25vw;
+    margin: .5vw;
 }
 .infoBlock_items .icon{
     color: var(--theme-darkblue);

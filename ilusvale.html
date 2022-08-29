@@ -9,6 +9,7 @@
 </head>
 <body>
     <header>
+
         <div id = "logo">
             <h1 class="dancing">Ilus Vale</h1>
             <h2>City Council</h2>
@@ -20,7 +21,6 @@
         </div>
         <div id = "login">
             <button id = "loginBtn">Login</p>
-            <button id = "signUpBtn">Sign up</p>
         </div>
         
     </header>
@@ -28,10 +28,9 @@
     <div class = "content">
 
         <div class = "floating">
-            <h3 style="font-size: 60pt;">Life Redefined</h3>
+            <h3 style="font-size: 60pt;"><u>Life Redefined</u></h3>
             <h4 style="font-size: 36pt;">Live Better in <i>Paradise</i></h4>
         </div>
-        
         <div class = "infoBlock">
             <div>
                 <h3 style="padding-top:2vh; font-size: 50pt;">Life in the Vale</h3>
@@ -41,14 +40,14 @@
                 <div>
                     <img src="skyscrapers.png" class="icon">
                     <h6 style="font-size: 28pt">Housing</h6>
-                    <p>Select your new new from over 500 different models varying in size from single floors
+                    <p>Select your new home from over 500 different models varying in size from single floors
                         to entire three story penthouses. All furnishing is included and built to your specifications.
                     </p>
                 </div>
                 <div>
                     <img src="helicopter.png" class="icon">
                     <h6 style="font-size: 28pt">Transportation</h6>
-                    <p>Automated helicopters and luxury cars are availible at all times to take residents wherever they wish
+                    <p>Automated helicopters and luxury cars are available at all times to take residents wherever they wish
                         to go. 
                     </p>
                 </div>
@@ -56,7 +55,7 @@
                     <img src="health.png" class="icon">
                     <h6 style="font-size: 28pt">Health and Wellness</h6>
                     <p>
-                        The health and happiness of our residents is our highest concern. We have all the best health specialists
+                        The health and happiness of residents is our highest concern. We have all the best health specialists
                         in the world to make sure you're happy and healthy as long as you live here.
                     </p>
                 </div>
@@ -65,36 +64,34 @@
                     <h6 style="font-size: 28pt">Custom Requests</h6>
                     <p>
                         Any desire you may have is our pleasure to fulfill. We have a 24/7 request fulfillment service to
-                        see to your every want and need. If you dream it we'll make it happen. 
+                        see to your every need and desire. If you dream it we'll make it happen. 
                     </p>
                 </div>
             </div>
         </div>
-
-        
         <div class = "infoBlock">
             <div class="infoBlock_spacer">
                 <h3><u>Schedule a Free Tour Today</u></h3>
             </div>
-            <h3 style="padding-top:2vh; font-size: 50pt;">How We Do It</h3>
-            <div class = "infoBlock_items">
+            <h3 style="padding:5vh 0vw 2vh; font-size: 50pt;">How We Do It</h3>
+            <div class = "infoBlock_items" style="background-color:rgb(245, 245, 245)">
                 <img src="https://static01.nyt.com/images/2012/08/19/business/JP-ROBOT-1/JP-ROBOT-1-superJumbo.jpg">
-                <p style="padding-top:10vh; font-size: 30pt;">
+                <p style="padding:10vh 2vw; font-size: 30pt;">
                     The entire city is run by robots working underneath the city to see to your every need and desire. 
-                    Your request is their sole mission. With our revolutionary AI and automated
-                    robot production facility and fast AI education system, no request is too big or
+                    Your request is their sole mission. With our revolutionary automated
+                    robot production facility and fast AI re-education system, no request is too big or
                      too difficult for them to fulfill. Once you have recieved an account, you can
                      begin your dream lifestyle.
                 </p>
             </div>
             
         </div>
-
         <div class = "infoBlock" style="margin:50vh 0vw 50vh">
             <div class="infoBlock_spacer">
                 <h3 >Council Information</h3>
             </div>
-            <p id="LStip"><i>Login or Sign up for more options</i></p>
+
+            <p id="LStip"><i>Login or Request Account below for more options</i></p>
             <div class = "infoBlock_items">
                 <button id = "makeComplaint">Report Complaint</button>
                 <button id = "requestAccount">Request Account</button>
@@ -109,6 +106,7 @@
 
             </div>
         </div>
+
     </div>
 
     <footer>
@@ -138,7 +136,6 @@
             </form>
         </div>
     </div>
-
     <div class = "popUpContainer" id = "complaintBackDrop">
         <div class = "popUp" id = "complaintForm">
             <form>
@@ -151,7 +148,6 @@
             </form>
         </div>
     </div>
-
     <div class = "popUpContainer" id = "requestBackDrop">
         <div class = "popUp" id = "requestForm">
             <form>
@@ -207,12 +203,12 @@
 </body>
 
 <script>
-    const baseUrl = "http://localhost:8080";
+    //const baseUrl = "http://localhost:5050";
+    const baseUrl = "https://project1-container-app1.jollymushroom-2d3b9122.eastus.azurecontainerapps.io";
 
     const login = document.getElementById("loginBtn");
     const submitLogin = document.getElementById("submitLogin");
     const closeLogin = document.getElementById("closeLogin");
-    const signUp = document.getElementById("signUpBtn");
 
     const makeComplaint = document.getElementById("makeComplaint");
     const cFormSubmit = document.getElementById("submitComplaint");
@@ -288,9 +284,7 @@
     closeLogin.addEventListener("click", function(event){
         document.getElementById("loginBackDrop").style.display = "none";
     });
-    signUp.addEventListener("click", async function(event){
 
-    });
 
     ////////////////// Report Complaint Pop-up  //////////////////
     makeComplaint.addEventListener("click", function(event){
